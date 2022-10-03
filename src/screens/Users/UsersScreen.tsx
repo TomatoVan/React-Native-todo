@@ -1,13 +1,16 @@
-import {Button, Text, View} from 'react-native';
 import * as React from 'react';
-import {useAppNavigation} from '../types/types';
+import {NestedStack} from '../types/types';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {MainScreen} from './Main/MainScreen';
+import {MainDetailsScreen} from './MainDetails/MainDetailsScreen';
+
+const Stack = createNativeStackNavigator<NestedStack>();
 
 export function UsersScreen() {
-	const navigation = useAppNavigation()
 	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>Users Screen</Text>
-			<Button title={'Link to Home'} onPress={() => navigation.navigate('Home')}/>
-		</View>
+		<Stack.Navigator>
+				<Stack.Screen name={'Main'} component={MainScreen}/>
+				<Stack.Screen name={'MainDetails'} component={MainDetailsScreen}/>
+		</Stack.Navigator>
 	);
 }
